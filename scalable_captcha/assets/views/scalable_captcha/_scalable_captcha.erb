@@ -1,0 +1,40 @@
+<!-- Copyright (c) 2011 [Sur http://www.confiz.com] -->
+
+<style type="text/CSS">
+  
+  #scalable_captcha{border: 1px solid #ccc; padding: 5px !important;}
+  #scalable_captcha,
+  #scalable_captcha div{display: table;}
+  #scalable_captcha .scalable_captcha_field,
+  #scalable_captcha .scalable_captcha_image{
+    border: 1px solid #ccc;
+    margin: 0px 0px 2px 0px !important;
+    padding: 0px !important;
+  }
+  #scalable_captcha .scalable_captcha_image img{
+    margin: 0px !important;
+    padding: 0px !important;
+    width: 110px !important;
+  }
+  #scalable_captcha .scalable_captcha_label{font-size: 12px;}
+  #scalable_captcha .scalable_captcha_field input{
+    width: 150px !important;
+    font-size: 16px;
+    border: none;
+    background-color: #efefef;
+  }
+</style>
+
+<div id='scalable_captcha'>
+  <div class='scalable_captcha_image'>
+    <%= @scalable_captcha_options[:image] %>
+  </div>
+  
+  <div class='scalable_captcha_field'>
+    <%= @scalable_captcha_options[:field] %>
+  </div>
+  
+  <div class='scalable_captcha_label'>
+    <%= @scalable_captcha_options[:label] %>
+  </div>
+</div>

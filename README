@@ -1,0 +1,95 @@
+Copyright (c) 2011 [Sur http://www.confiz.com]
+
+ScalableCaptcha
+=========================================================================================
+  The only Captcha for high volume websites.
+
+  Version: 1.0
+  Author:  Confiz
+  Plugin Homepage:  https://github.com/confiz/scalable-captcha
+  Contributors:
+    Shakeel Mumtaz:  itshakeel23[at]gmail[dot]com
+    Hassan Abdul Rehman:  hassan[dot]rehman[at]gmail[dot]com
+
+  Any feedback/comment/issue/donation is welcome!
+
+  Contact: opensource[at]confiz[dot]com
+
+  Note: The basic inspiration came from ScalableCaptcha (http://expressica.com/scalable_captcha/)
+        but we ran into major scalability issues so decided to develop our own.
+
+  Introduction:
+  -------------
+  ScalableCaptcha is a simple, highly scalable and a robust captcha plugin. It's implementation requires a
+  simple setup script and followed by adding up a single line in views and in controllers.
+  
+  Unlike others of it's kind ScalableCaptcha is highly scalable (duh!) and independent of
+  external service.
+
+  ScalableCaptcha is available to be used with Rails2.0 or above and also it provides the
+  backward compatibility with previous versions of Rails.
+
+  Features:
+  -----------
+  -> numerous options for image style, distortion, noise and code type.
+  -> pre-generates captcha images hence is highly scalable.
+
+
+Pre-Requisite
+=========================================================================================
+  -> rmagick
+  -> rails 2.x.x
+  -> 1.8.x
+
+Installation
+=========================================================================================
+  >> ruby script/plugin install https://github.com/confiz/scalable-captcha
+
+Setup
+=========================================================================================
+  After installation, follow these simple steps to setup the plugin. The setup will depend
+  on the version of rails your application is using.
+
+  Step 1
+    for rails >= 2.0
+        rake scalable_captcha:setup
+
+    for rails < 2.0
+        rake scalable_captcha:setup_old
+
+  Step 2
+    rake db:migrate
+    rake scalable_captcha:generate_images
+
+    Note: if you want to customize the images generated update scalable_captcha.yml
+          and run rake scalable_captcha:generate_images
+
+  Step 3
+    ActionController::Routing::Routes.draw do |map|
+      map.scalable_captcha '/scalable_captcha/:action', :controller => 'scalable_captcha'
+    end
+
+  Step 4
+    ApplicationController < ActionController::Base
+      include ScalableCaptcha::ControllerHelpers
+    end
+
+
+Examples
+===========================================================================================
+
+    In the view file within the form tags add this code
+        <%= show_scalable_captcha %>
+
+    and in the controller’s action authenticate it as
+
+    def my_action
+      if scalable_captcha_valid?
+        do_this
+      else
+        do_that
+      end
+    end
+
+    Note: look into scalable_captcha.yml for details on image style, distortion and code type.
+

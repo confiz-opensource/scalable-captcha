@@ -1,0 +1,36 @@
+development:
+  #image to store pre-generated paths. default: #{RAILS_ROOT}/vendor/plugins/scalable_captcha/assets/images/scalable_captcha
+  image_path: public/images/captcha_images
+
+  #number of captcha images to generate. default: 100
+  image_pool: 50
+
+  #seconds between each image generated (for load management)
+  sleep_time: 2
+
+  #remove all existing images before generating
+  destroy_captcha_images: false
+
+  #look and feel of the generated image
+  image_options:
+    #a measure of how skewed the image is to be. default: low
+    distortion: medium
+
+    #type of code to render in the captcha image. default: alphabetic
+    code_type: alphabetic
+
+    #color of the text generated. default: simply_blue
+    image_type: simply_blue
+
+
+production:
+  image_path: public/images/captcha_images
+  image_pool: 50
+  sleep_time: 2
+  destroy_captcha_images: false
+  image_options:
+    distortion: low
+    code_type: alphabetic
+    image_type: simply_blue
+
+
